@@ -1,4 +1,4 @@
-package br.com.stocking.product;
+package br.com.stocking.entities.product;
 
 import org.springframework.stereotype.Repository;
 
