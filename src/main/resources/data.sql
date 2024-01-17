@@ -1,0 +1,1 @@
+INSERT INTO RAW_MATERIAL (name, price) VALUES ('Mouse', '2' );

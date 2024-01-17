@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Material</title>
+</head>
+<body>
+
+<h2>Cadastro de Material</h2>
+
+<form action="/create/rawMaterial" method="post" th:object="${materialForm}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+    <br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" th:field="*{price}" required>
+    <br>
+
+    <button type="submit">Cadastrar</button>
+</form>
+
+</body>
+</html>

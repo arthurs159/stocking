@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Material</title>
+</head>
+<body>
+
+<h2>Detalhes do Material</h2>
+
+<form th:action="@{'/update/rawMaterial/' + ${material.getId()}}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:value="${material.name}">
+    <br>
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" th:value="${material.price}">
+    <br>
+
+    <a th:href="@{/materiais}">Voltar</a>
+    <button type="submit">Cadastrar</button>
+</form>
+
+
+</body>
+</html>

@@ -6,5 +6,11 @@
 </head>
 <body>
     <p th:text="'Hello, ' + ${name} + '!'"></p>
+
+    <ul>
+        <li th:each="material : ${materialList}" th:text="${material.name}"></li>
+        <li th:each="material : ${materialList}" th:text="${material.price}"></li>
+    </ul>
+
 </body>
 </html>

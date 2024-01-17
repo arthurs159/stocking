@@ -23,6 +23,11 @@ public class RawMaterial implements Serializable {
         this.price = price;
     }
 
+    public void merge(RawMaterialForm form) {
+        this.name = form.getName();
+        this.price = form.getPrice();
+    }
+
     public Long getId() {
         return id;
     }
