@@ -16,12 +16,12 @@ public class RawMaterialController {
         this.rawMaterialRepository = rawMaterialRepository;
     }
 
-    @GetMapping("/list/rawMaterial")
+    @GetMapping({"/list/rawMaterial", "/"})
     public String listRawMaterial(Model model) {
         List<RawMaterial> materialList = rawMaterialRepository.findAll();
 
         model.addAttribute("materialList", materialList);
-        return "hello";
+        return "/rawMaterial/list";
     }
 
     @GetMapping("/create/rawMaterial")
@@ -53,6 +53,6 @@ public class RawMaterialController {
 
         rawMaterial.merge(form);
         rawMaterialRepository.save(rawMaterial);
-        return listRawMaterial(model);
+        return "redirect:/list/rawMaterial";
     }
 }

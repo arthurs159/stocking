@@ -1,6 +1,8 @@
 package br.com.stocking.entities.rawMaterial;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,7 +15,9 @@ public class RawMaterial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+//    @NotEmpty
     private String name;
+//    @NotEmpty
     private double price;
 
     public RawMaterial() {}
