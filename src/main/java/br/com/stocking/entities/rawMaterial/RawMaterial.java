@@ -1,5 +1,6 @@
 package br.com.stocking.entities.rawMaterial;
 
+import br.com.stocking.entities.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -15,10 +16,14 @@ public class RawMaterial implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @NotEmpty
+    @NotEmpty
     private String name;
-//    @NotEmpty
+    @NotEmpty
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public RawMaterial() {}
 
@@ -42,5 +47,9 @@ public class RawMaterial implements Serializable {
 
     public double getPrice() {
         return price;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 }
