@@ -1,12 +1,18 @@
 package br.com.stocking.entities.rawMaterial;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 public class RawMaterialForm {
 
     private Long id;
+    @NotEmpty(message = "ERRO !!!!!!!!!!!!!!!!!!!!!")
     private String name;
+    @NotNull
     private double price;
+    @NotNull
     private int quantity;
     private LocalDate expiredDate;
 

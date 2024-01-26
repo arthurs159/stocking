@@ -20,7 +20,7 @@ public class RawMaterialQuantity implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "producId")
+    @JoinColumn(name = "productId")
     private Product product;
 
     @ManyToOne

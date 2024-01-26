@@ -13,12 +13,20 @@
 
 <form th:action="@{'/update/rawMaterial/' + ${material.getId()}}" method="post">
     <div class="mb-3">
-        <label for="raw-material_name" class="form-label">Nome do Material</label>
+        <label for="raw-material_name" class="form-label">Nome do Material:</label>
         <input type="text" class="form-control" id="raw-material_name" name="name" th:value="${material.name}">
     </div>
     <div class="mb-3">
-        <label for="raw-material_price" class="form-label">Preço</label>
+        <label for="raw-material_price" class="form-label">Preço:</label>
         <input type="number" class="form-control" id="raw-material_price"  name="price" th:value="${material.price}">
+    </div>
+    <div class="mb-3">
+        <label for="raw-material_quantity" class="form-label">Quantidade:</label>
+        <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:value="${material.quantity}">
+    </div>
+    <div class="mb-3">
+        <label for="raw-material_expiredDate" class="form-label">Data de Vencimento:</label>
+        <input type="date" class="form-control" id="raw-material_expiredDate" name="expiredDate" th:value="${material.expiredDate}" >
     </div>
     <button type="submit" class="btn btn-primary">Salvar</button>
 </form>

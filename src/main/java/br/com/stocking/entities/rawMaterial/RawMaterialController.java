@@ -1,7 +1,9 @@
 package br.com.stocking.entities.rawMaterial;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,13 +27,18 @@ public class RawMaterialController {
     }
 
     @GetMapping("/create/rawMaterial")
-    public String rawMaterialFormPage(Model model) {
+    public String rawMaterialFormPage(Model model, RawMaterialForm form) {
         model.addAttribute("materialForm", new RawMaterialForm());
         return "rawMaterial/rawMaterialInsert";
     }
 
     @PostMapping("/create/rawMaterial")
-    public String createRawMaterial(@ModelAttribute RawMaterialForm materialForm, Model model) {
+    public String createRawMaterial(@ModelAttribute("materialForm") @Valid RawMaterialForm materialForm, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            model.addAttribute("materialForm", materialForm);
+            return "rawMaterial/rawMaterialInsert";
+        }
+
         RawMaterial rawMaterial = materialForm.toEntity();
         rawMaterialRepository.save(rawMaterial);
 
@@ -39,7 +46,7 @@ public class RawMaterialController {
     }
 
     @GetMapping("/update/rawMaterial/{id}")
-    public String createRawMaterialForm(@PathVariable Long id, Model model) {
+    public String createRawMaterialForm(@PathVariable Long id, Model model, RawMaterialForm form) {
         Optional<RawMaterial> rawMaterial = rawMaterialRepository.findById(id);
 
         rawMaterial.ifPresent(material -> model.addAttribute("material", material));
@@ -48,7 +55,9 @@ public class RawMaterialController {
     }
 
     @PostMapping("/update/rawMaterial/{id}")
-    public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterialForm form, Model model) {
+    public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterialForm form,  BindingResult result, Model model) {
+        if(result.hasErrors()) return createRawMaterialForm(id, model, form);
+
         RawMaterial rawMaterial = rawMaterialRepository.findById(id).orElseThrow();
 
         rawMaterial.merge(form);

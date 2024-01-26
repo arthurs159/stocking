@@ -21,6 +21,8 @@
                 <td th:text="${material.id}"></td>
                 <td th:text="${material.name}"></td>
                 <td th:text="${material.price}"></td>
+                <td th:text="${material.quantity}"></td>
+                <td th:text="${material.expiredDate}"></td>
                 <td>
                     <a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">
                         Editar

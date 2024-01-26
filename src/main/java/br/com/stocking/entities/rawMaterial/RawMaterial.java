@@ -22,7 +22,7 @@ public class RawMaterial implements Serializable {
     private Long id;
     @NotEmpty
     private String name;
-    @NotEmpty
+    @NotNull
     private double price;
     private int quantity;
     private LocalDate createdAt = now();
@@ -45,6 +45,8 @@ public class RawMaterial implements Serializable {
     public void merge(RawMaterialForm form) {
         this.name = form.getName();
         this.price = form.getPrice();
+        this.quantity = form.getQuantity();
+        this.expiredDate = form.getExpiredDate();
     }
 
     public Long getId() {
