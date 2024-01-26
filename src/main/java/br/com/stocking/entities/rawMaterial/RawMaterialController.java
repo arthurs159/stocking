@@ -39,7 +39,7 @@ public class RawMaterialController {
     }
 
     @GetMapping("/update/rawMaterial/{id}")
-    public String createRawMaterial(@PathVariable Long id, Model model) {
+    public String createRawMaterialForm(@PathVariable Long id, Model model) {
         Optional<RawMaterial> rawMaterial = rawMaterialRepository.findById(id);
 
         rawMaterial.ifPresent(material -> model.addAttribute("material", material));
@@ -48,7 +48,7 @@ public class RawMaterialController {
     }
 
     @PostMapping("/update/rawMaterial/{id}")
-    public String atualizarMaterial(@PathVariable Long id, @ModelAttribute RawMaterialForm form, Model model) {
+    public String updateRawMaterial(@PathVariable Long id, @ModelAttribute RawMaterialForm form, Model model) {
         RawMaterial rawMaterial = rawMaterialRepository.findById(id).orElseThrow();
 
         rawMaterial.merge(form);

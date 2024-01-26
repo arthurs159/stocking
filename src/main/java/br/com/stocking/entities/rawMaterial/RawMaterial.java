@@ -7,6 +7,10 @@ import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
+
+import static jakarta.persistence.GenerationType.*;
+import static java.time.LocalDate.*;
 
 @Entity
 public class RawMaterial implements Serializable {
@@ -14,22 +18,28 @@ public class RawMaterial implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     @NotEmpty
     private String name;
     @NotEmpty
     private double price;
+    private int quantity;
+    private LocalDate createdAt = now();
+    private LocalDate expiredDate;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "productId")
     private Product product;
 
     public RawMaterial() {}
 
-    public RawMaterial(String name, double price) {
+    public RawMaterial(String name, double price, int quantity, LocalDate expiredDate) {
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
+        this.expiredDate = expiredDate;
+//        this.product = product;
     }
 
     public void merge(RawMaterialForm form) {
@@ -51,5 +61,17 @@ public class RawMaterial implements Serializable {
 
     public Product getProduct() {
         return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDate getExpiredDate() {
+        return expiredDate;
     }
 }
