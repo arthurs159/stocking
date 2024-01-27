@@ -1,6 +1,8 @@
 package br.com.stocking.entities.product;
 
 import br.com.stocking.entities.rawMaterial.RawMaterial;
+import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
+import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -23,16 +25,18 @@ public class Product implements Serializable {
     private String name;
     private int quantity;
 
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<RawMaterial> rawMaterialList = new ArrayList<>();
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<RawMaterial> rawMaterialList = new ArrayList<>();
+    private List<ProductRawMaterial> productRawMaterials = new ArrayList<>();
 
     public Product() {}
 
-    public Product(Long id, String name, int quantity, List<RawMaterial> rawMaterialList) {
-        this.id = id;
+    public Product(String name, int quantity, List<ProductRawMaterial> productRawMaterials) {
         this.name = name;
         this.quantity = quantity;
-        this.rawMaterialList = rawMaterialList;
+        this.productRawMaterials = productRawMaterials;
     }
 
     public Long getId() {
@@ -47,7 +51,7 @@ public class Product implements Serializable {
         return quantity;
     }
 
-    public List<RawMaterial> getRawMaterialList() {
-        return rawMaterialList;
+    public List<ProductRawMaterial> getProductRawMaterials() {
+        return productRawMaterials;
     }
 }

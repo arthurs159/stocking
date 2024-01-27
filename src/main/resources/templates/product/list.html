@@ -12,24 +12,20 @@
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Preço</th>
                 <th scope="col">Quantidade</th>
-                <th scope="col">Data de expiração</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="material : ${materialList}">
-                <td th:text="${material.id}"></td>
-                <td th:text="${material.name}"></td>
-                <td th:text="${material.price}"></td>
-                <td th:text="${material.quantity}"></td>
-                <td th:text="${material.expiredDate}"></td>
-                <td>
-                    <a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">
-                        Editar
-                    </a>
-                </td>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.quantity}"></td>
+<!--                <td>-->
+<!--                    <a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">-->
+<!--                        Editar-->
+<!--                    </a>-->
+<!--                </td>-->
             </tr>
         </tbody>
     </table>

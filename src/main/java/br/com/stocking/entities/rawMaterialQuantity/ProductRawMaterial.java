@@ -10,7 +10,7 @@ import java.io.Serializable;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-public class RawMaterialQuantity implements Serializable {
+public class ProductRawMaterial implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -29,9 +29,9 @@ public class RawMaterialQuantity implements Serializable {
 
     private int quantity;
 
-    public RawMaterialQuantity() {}
+    public ProductRawMaterial() {}
 
-    public RawMaterialQuantity(Product product, RawMaterial rawMaterial, int quantity) {
+    public ProductRawMaterial(Product product, RawMaterial rawMaterial, int quantity) {
         this.product = product;
         this.rawMaterial = rawMaterial;
         this.quantity = quantity;

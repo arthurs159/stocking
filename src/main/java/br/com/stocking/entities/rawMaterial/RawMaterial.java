@@ -25,7 +25,7 @@ public class RawMaterial implements Serializable {
     @NotNull
     private double price;
     private int quantity;
-    private LocalDate createdAt = now();
+    private final LocalDate createdAt = now();
     private LocalDate expiredDate;
 
     @ManyToOne
