@@ -33,9 +33,10 @@
     <div th:each="rawMaterial, iterStat : ${rawMaterialList}">
         <label th:for="${'rawMaterialQuantities[' + iterStat.index + '].quantity'}"
                th:text="${rawMaterial.name}"></label>
-        <input type="hidden" th:field="*{rawMaterialQuantities[__${iterStat.index}__].rawMaterialId}" th:value="${rawMaterial.id}" />
+        <input type="hidden" th:name="${'rawMaterialQuantities[' + iterStat.index + '].rawMaterialId'}" th:value="${rawMaterial.id}" />
         <input type="number" th:field="*{rawMaterialQuantities[__${iterStat.index}__].quantity}" />
     </div>
+
 
     <button type="submit" class="btn btn-primary">Salvar</button>
 

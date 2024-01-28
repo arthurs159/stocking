@@ -19,11 +19,11 @@ public class ProductRawMaterial implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "productId")
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rawMaterialId")
     private RawMaterial rawMaterial;
 

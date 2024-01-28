@@ -4,6 +4,7 @@ import br.com.stocking.entities.rawMaterial.RawMaterial;
 import br.com.stocking.entities.rawMaterial.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
+import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +19,14 @@ public class ProductController {
 
     private final ProductRepository productRepository;
     private final RawMaterialRepository rawMaterialRepository;
+    private final ProductRawMaterialRepository productRawMaterialRepository;
+    private final ProductService productService;
 
-    public ProductController(ProductRepository productRepository, RawMaterialRepository rawMaterialRepository) {
+    public ProductController(ProductRepository productRepository, RawMaterialRepository rawMaterialRepository, ProductRawMaterialRepository productRawMaterialRepository, ProductService productService) {
         this.productRepository = productRepository;
         this.rawMaterialRepository = rawMaterialRepository;
+        this.productRawMaterialRepository = productRawMaterialRepository;
+        this.productService = productService;
     }
 
     @GetMapping("product/list")
@@ -40,21 +45,14 @@ public class ProductController {
 
     @PostMapping("product/create")
     public String createRawMaterial(@ModelAttribute("productForm") @Valid ProductForm productForm, BindingResult result, Model model) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             model.addAttribute("productForm", productForm);
             return "product/create";
         }
 
-        List<ProductRawMaterial> productRawMaterials = new ArrayList<>();
-        for (RawMaterialQuantity rawMaterialQuantity : productForm.getRawMaterialQuantities()) {
-            RawMaterial rawMaterial = rawMaterialRepository.findById(rawMaterialQuantity.getRawMaterialId()).orElseThrow(() -> new RuntimeException("RawMaterial not found"));
-            ProductRawMaterial productRawMaterial = new ProductRawMaterial(productForm.toEntity(), rawMaterial, rawMaterialQuantity.getQuantity());
-            productRawMaterials.add(productRawMaterial);
-        }
-
-        productForm.setProductRawMaterials(productRawMaterials);
-        productRepository.save(productForm.toEntity());
+        productService.createProductWithRawMaterials(productForm);
         return getProductPage(model);
     }
+
 
 }
