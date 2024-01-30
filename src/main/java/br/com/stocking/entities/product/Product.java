@@ -1,16 +1,12 @@
 package br.com.stocking.entities.product;
 
-import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
-import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
 public class Product implements Serializable {
@@ -28,15 +24,14 @@ public class Product implements Serializable {
 //    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<RawMaterial> rawMaterialList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductRawMaterial> productRawMaterials = new ArrayList<>();
+//    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<ProductRawMaterial> productRawMaterials = new ArrayList<>();
 
     public Product() {}
 
-    public Product(String name, int quantity, List<ProductRawMaterial> productRawMaterials) {
+    public Product(String name, int quantity) {
         this.name = name;
         this.quantity = quantity;
-        this.productRawMaterials = productRawMaterials;
     }
 
     public Long getId() {
@@ -51,7 +46,7 @@ public class Product implements Serializable {
         return quantity;
     }
 
-    public List<ProductRawMaterial> getProductRawMaterials() {
-        return productRawMaterials;
-    }
+//    public List<ProductRawMaterial> getProductRawMaterials() {
+//        return productRawMaterials;
+//    }
 }

@@ -17,7 +17,6 @@ public class ProductForm {
     private int quantity;
 
     private List<RawMaterialQuantity> rawMaterialQuantities = new ArrayList<>();
-    private List<ProductRawMaterial> productRawMaterials = new ArrayList<>();
 
     public ProductForm() {}
 
@@ -29,7 +28,7 @@ public class ProductForm {
     }
 
     public Product toEntity() {
-        return new Product(this.name, this.quantity, this.productRawMaterials);
+        return new Product(this.name, this.quantity);
     }
 
     public Long getId() {
@@ -62,13 +61,5 @@ public class ProductForm {
 
     public void setRawMaterialQuantities(List<RawMaterialQuantity> rawMaterialQuantities) {
         this.rawMaterialQuantities = rawMaterialQuantities;
-    }
-
-    public List<ProductRawMaterial> getProductRawMaterials() {
-        return productRawMaterials;
-    }
-
-    public void setProductRawMaterials(List<ProductRawMaterial> productRawMaterials) {
-        this.productRawMaterials = productRawMaterials;
     }
 }
