@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Material</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/fragments/mainMenu.css"/>
 </head>
 
 <style>
@@ -15,43 +16,43 @@
 
 <body>
 
-<h2>Cadastro de Material</h2>
+<div th:include="fragments/mainMenu" class="mainMenu-container"></div>
 
-<form action="/product/create" th:object="${productForm}" method="post">
-    <div class="mb-3">
-        <label for="raw-material_name" class="form-label">Nome do Material:</label>
-        <input type="text" class="form-control" id="raw-material_name" name="name" th:field="*{name}" th:value="*{name}">
-        <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
-    </div>
-    <div class="mb-3">
-        <label for="raw-material_quantity" class="form-label">Quantidade:</label>
-        <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}" th:value="*{quantity}">
-        <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+<div class="content-container">
+    <div>
+        <h2>Cadastro de Produto</h2>
     </div>
 
-    <select id="rawMaterialSelect">
-        <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}" th:text="${rawMaterial.name}"></option>
-    </select>
+    <form action="/product/create" th:object="${productForm}" method="post">
+        <div class="mb-3">
+            <label for="raw-material_name" class="form-label">Nome do Produto:</label>
+            <input type="text" class="form-control" id="raw-material_name" name="name" th:field="*{name}"
+                   th:value="*{name}">
+            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
+        </div>
+        <div class="mb-3">
+            <label for="raw-material_quantity" class="form-label">Quantidade:</label>
+            <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}"
+                   th:value="*{quantity}">
+            <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+        </div>
 
-    <!-- Campo de entrada para a quantidade -->
-    <input type="number" id="quantityInput" />
+        <select id="rawMaterialSelect">
+            <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}"
+                    th:text="${rawMaterial.name}"></option>
+        </select>
 
-    <!-- Botão para adicionar o item selecionado -->
-    <button type="button" onclick="addSelectedRawMaterial()">Adicionar RawMaterial</button>
+        <input type="number" id="quantityInput"/>
+        <button type="button" onclick="addSelectedRawMaterial()">Adicionar RawMaterial</button>
+        <ul id="selectedRawMaterials"></ul>
+        <div id="hiddenInputsContainer"></div>
 
-    <!-- Lista para mostrar os itens selecionados -->
-    <ul id="selectedRawMaterials"></ul>
-
-    <!-- Adicione essa div para armazenar os inputs hidden -->
-    <div id="hiddenInputsContainer"></div>
-
-
-    <button type="submit" class="btn btn-primary">Salvar</button>
-
-</form>
-
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
 </body>
-<script src="/js/product/create.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" type="application/javascript"></script>
+<script src="/js/product/addMaterial.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        type="application/javascript"></script>
 
 </html>

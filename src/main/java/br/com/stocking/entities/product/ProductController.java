@@ -31,7 +31,7 @@ public class ProductController {
 
     @GetMapping("product/list")
     public String getProductPage(Model model) {
-        model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("products", productRepository.findAllProductsWithPrice());
         return "product/list";
     }
 

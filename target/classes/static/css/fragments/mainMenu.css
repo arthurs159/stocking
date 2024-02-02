@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    margin: 30px 25px;
+}
+
+nav {
+    height: 93vh;
+    width: 220px;
+}
+
+.mainMenu-container {
+    background-color: red;
+    height: 93vh;
+    width: 305px;
+    border-radius: 40px 0 0 40px
+}
+
+.logo-company {
+    display: flex;
+    padding-top: 50px;
+    height: 150px;
+}
+
+.logo-company span {
+    background-color: white;
+    margin: 0 auto;
+    font-size: 30px;
+    width: 150px;
+}
+
+.content-container {
+    width: 100%;
+    background-color: antiquewhite;
+    border-radius: 40px 0 0 40px;
+    position: relative;
+    right: 45px;
+    padding: 35px
+}
+
+.menu-container {
+    display: flex;
+    padding-top: 50px;
+    align-items: center;
+    font-size: 20px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-container button {
+    width: 150px;
+}
