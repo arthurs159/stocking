@@ -25,6 +25,7 @@ public class RawMaterial implements Serializable {
     @NotNull
     private double price;
     private int quantity;
+    private Unit unit;
     private final LocalDate createdAt = now();
     private LocalDate expiredDate;
 
@@ -34,10 +35,11 @@ public class RawMaterial implements Serializable {
 
     public RawMaterial() {}
 
-    public RawMaterial(String name, double price, int quantity, LocalDate expiredDate) {
+    public RawMaterial(String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.unit = unit;
         this.expiredDate = expiredDate;
 //        this.product = product;
     }
@@ -46,6 +48,7 @@ public class RawMaterial implements Serializable {
         this.name = form.getName();
         this.price = form.getPrice();
         this.quantity = form.getQuantity();
+        this.unit = form.getUnit();
         this.expiredDate = form.getExpiredDate();
     }
 
@@ -75,5 +78,9 @@ public class RawMaterial implements Serializable {
 
     public LocalDate getExpiredDate() {
         return expiredDate;
+    }
+
+    public Unit getUnit() {
+        return unit;
     }
 }

@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/fragments/mainMenu.css"/>
 </head>
 <body>
-<div th:include="fragments/mainMenu" class="mainMenu-container"></div>
+<div th:insert="~{fragments/mainMenu}" class="mainMenu-container"></div>
 
 <div class="content-container">
     <div>
@@ -31,7 +31,7 @@
             <td th:text="${material.id}"></td>
             <td th:text="${material.name}"></td>
             <td th:text="${material.price}"></td>
-            <td th:text="${material.quantity}"></td>
+            <td th:text="${material.quantity} + ' ' + ${material.getUnit().getDisplayName()}"></td>
             <td th:text="${material.expiredDate}"></td>
             <td>
                 <a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">

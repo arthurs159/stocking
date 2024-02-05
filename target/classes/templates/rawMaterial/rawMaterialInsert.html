@@ -34,6 +34,13 @@
         <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
     </div>
     <div class="mb-3">
+        <label for="raw-material_unit" class="form-label">Unidade:</label>
+        <select class="form-control" id="raw-material_unit" name="unit" th:field="*{unit}">
+            <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit.getDisplayName()}"></option>
+        </select>
+        <p th:if="${#fields.hasErrors('unit')}" th:errorclass="error" th:errors="*{unit}"></p>
+    </div>
+    <div class="mb-3">
         <label for="raw-material_expiredDate" class="form-label">Data de vencimento:</label>
         <input type="date" class="form-control" id="raw-material_expiredDate" name="expiredDate" th:field="*{expiredDate}" th:value="*{expiredDate}">
         <p th:if="${#fields.hasErrors('expiredDate')}" th:errorclass="error" th:errors="*{expiredDate}"></p>

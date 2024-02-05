@@ -14,20 +14,22 @@ public class RawMaterialForm {
     private double price;
     @NotNull
     private int quantity;
+    private Unit unit;
     private LocalDate expiredDate;
 
     public RawMaterialForm() {}
 
-    public RawMaterialForm(Long id, String name, double price, int quantity, LocalDate expiredDate) {
+    public RawMaterialForm(Long id, String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.unit = unit;
         this.expiredDate = expiredDate;
     }
 
     public RawMaterial toEntity() {
-        return new RawMaterial(this.name, this.price, this.quantity, this.expiredDate);
+        return new RawMaterial(this.name, this.price, this.quantity, this.unit, this.expiredDate);
     }
 
     public Long getId() {
@@ -68,5 +70,13 @@ public class RawMaterialForm {
 
     public void setExpiredDate(LocalDate expiredDate) {
         this.expiredDate = expiredDate;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }
