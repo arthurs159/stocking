@@ -41,7 +41,6 @@ public class RawMaterial implements Serializable {
         this.quantity = quantity;
         this.unit = unit;
         this.expiredDate = expiredDate;
-//        this.product = product;
     }
 
     public void merge(RawMaterialForm form) {
