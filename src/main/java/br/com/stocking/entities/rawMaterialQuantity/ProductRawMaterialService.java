@@ -15,7 +15,6 @@ public class ProductRawMaterialService {
 
     public void createQuantityRawMaterialForProduct(RawMaterial rawMaterial, Product product, int quantity) {
         ProductRawMaterial productRawMaterial = new ProductRawMaterial(product, rawMaterial, quantity);
-
         productRawMaterialRepository.save(productRawMaterial);
     }
 }
