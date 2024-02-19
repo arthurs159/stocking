@@ -12,3 +12,5 @@ INSERT INTO PRODUCT_RAW_MATERIAL(product_id, raw_material_id, quantity) values (
 INSERT INTO PRODUCT_RAW_MATERIAL(product_id, raw_material_id, quantity) values (1, 2, 1);
 INSERT INTO PRODUCT_RAW_MATERIAL(product_id, raw_material_id, quantity) values (2, 4, 1);
 INSERT INTO PRODUCT_RAW_MATERIAL(product_id, raw_material_id, quantity) values (2, 5, 2);
+
+INSERT INTO USERS(name, last_name, email, password) VALUES ('Arthur', 'Scarpati', 'arthur', '$2a$10$.UKSiqDW.HABXRMDA0nFp.prf11bYHzppf15d6Ba04s7oWrlXjk/u');

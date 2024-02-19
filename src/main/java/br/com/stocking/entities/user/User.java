@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 @Entity
-@Table(name = "\"User\"")
+@Table(name = "Users")
 public class User implements UserDetails {
 
     @Id
