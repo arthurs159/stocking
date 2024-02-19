@@ -1,19 +1,20 @@
 package br.com.stocking.entities.role;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String Authority;
+    private String name;
 
     public Role() {}
 
-    public Role(Long id, String authority) {
+    public Role(Long id, String name) {
         this.id = id;
-        Authority = authority;
+        this.name = name;
     }
 
     public Long getId() {
@@ -21,6 +22,6 @@ public class Role {
     }
 
     public String getAuthority() {
-        return Authority;
+        return name;
     }
 }
