@@ -25,6 +25,12 @@
         <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:value="${material.quantity}">
     </div>
     <div class="mb-3">
+        <label for="raw-material_unit" class="form-label">Unidade:</label>
+        <select class="form-control" id="raw-material_unit" name="unit">
+            <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit.getDisplayName()}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
         <label for="raw-material_expiredDate" class="form-label">Data de Vencimento:</label>
         <input type="date" class="form-control" id="raw-material_expiredDate" name="expiredDate" th:value="${material.expiredDate}" >
     </div>

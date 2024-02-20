@@ -49,3 +49,9 @@ nav {
 .menu-container button {
     width: 150px;
 }
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}

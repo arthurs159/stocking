@@ -50,6 +50,7 @@ public class RawMaterialController {
     @GetMapping("/update/rawMaterial/{id}")
     public String createRawMaterialForm(@PathVariable Long id, Model model, RawMaterialForm form) {
         Optional<RawMaterial> rawMaterial = rawMaterialRepository.findById(id);
+        model.addAttribute( "units", Unit.values());
         rawMaterial.ifPresent(material -> model.addAttribute("material", material));
 
         return "rawMaterial/updateForm";

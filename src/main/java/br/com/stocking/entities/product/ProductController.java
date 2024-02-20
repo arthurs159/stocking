@@ -53,6 +53,4 @@ public class ProductController {
         productService.createProductWithRawMaterials(productForm);
         return getProductPage(model);
     }
-
-
 }
