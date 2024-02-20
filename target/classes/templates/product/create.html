@@ -6,6 +6,7 @@
     <title>Cadastro de Material</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/fragments/mainMenu.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/product/product.css"/>
 </head>
 
 <style>
@@ -24,28 +25,37 @@
     </div>
 
     <form action="/product/create" th:object="${productForm}" method="post">
-        <div class="mb-3">
-            <label for="raw-material_name" class="form-label">Nome do Produto:</label>
-            <input type="text" class="form-control" id="raw-material_name" name="name" th:field="*{name}"
-                   th:value="*{name}">
-            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
-        </div>
-        <div class="mb-3">
-            <label for="raw-material_quantity" class="form-label">Quantidade:</label>
-            <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}"
-                   th:value="*{quantity}">
-            <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+        <div class="form-container">
+            <div>
+                <div class="mb-3">
+                    <label for="raw-material_name" class="form-label">Nome do Produto:</label>
+                    <input type="text" class="form-control" id="raw-material_name" name="name" th:field="*{name}"
+                           th:value="*{name}">
+                    <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
+                </div>
+                <div class="mb-3">
+                    <label for="raw-material_quantity" class="form-label">Quantidade:</label>
+                    <input type="number" class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}"
+                           th:value="*{quantity}">
+                    <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+                </div>
+            </div>
+
+            <div class="product-container">
+                <select id="rawMaterialSelect">
+                    <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}"
+                            th:text="${rawMaterial.name}"></option>
+                </select>
+
+                <input type="number" id="quantityInput" placeholder="Quantidade"/>
+                <button type="button" onclick="addSelectedRawMaterial()">Adicionar</button>
+                <ul id="selectedRawMaterials"></ul>
+                <div id="hiddenInputsContainer"></div>
+            </div>
         </div>
 
-        <select id="rawMaterialSelect">
-            <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}"
-                    th:text="${rawMaterial.name}"></option>
-        </select>
 
-        <input type="number" id="quantityInput"/>
-        <button type="button" onclick="addSelectedRawMaterial()">Adicionar RawMaterial</button>
-        <ul id="selectedRawMaterials"></ul>
-        <div id="hiddenInputsContainer"></div>
+
 
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>

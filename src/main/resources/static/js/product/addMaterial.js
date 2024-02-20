@@ -6,9 +6,10 @@ function addSelectedRawMaterial() {
 
     var rawMaterialId = rawMaterialSelect.value;
     var quantity = quantityInput.value;
+    var materialName = Array.from(rawMaterialSelect.options).find(option => option.value === rawMaterialId).textContent;
 
     if (rawMaterialId && quantity) {
-        selectedRawMaterials.push({ rawMaterialId: rawMaterialId, quantity: quantity });
+        selectedRawMaterials.push({ rawMaterialId: rawMaterialId, quantity: quantity, materialName: materialName });
         clearInputFields();
         updateSelectedRawMaterialsList();
         updateHiddenInputs();
@@ -26,7 +27,7 @@ function updateSelectedRawMaterialsList() {
 
     selectedRawMaterials.forEach(function (item, index) {
         var listItem = document.createElement('li');
-        listItem.textContent = 'RawMaterial ID: ' + item.rawMaterialId + ', Quantity: ' + item.quantity;
+        listItem.textContent = item.quantity + ' ' + item.materialName +'(s)';
 
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Excluir';

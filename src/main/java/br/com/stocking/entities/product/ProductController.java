@@ -29,13 +29,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("product/list")
+    @GetMapping("/product/list")
     public String getProductPage(Model model) {
         model.addAttribute("products", productRepository.findAllProductsWithPrice());
         return "product/list";
     }
 
-    @GetMapping("product/create")
+    @GetMapping("/product/create")
     public String rawMaterialFormPage(Model model, ProductForm form) {
         List<RawMaterial> rawMaterialList = rawMaterialRepository.findAll();
         model.addAttribute("productForm", form);
@@ -43,7 +43,7 @@ public class ProductController {
         return "product/create";
     }
 
-    @PostMapping("product/create")
+    @PostMapping("/product/create")
     public String createRawMaterial(@ModelAttribute("productForm") @Valid ProductForm productForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("productForm", productForm);
