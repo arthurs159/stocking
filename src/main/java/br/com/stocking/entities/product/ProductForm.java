@@ -15,15 +15,17 @@ public class ProductForm {
     private String name;
     @NotNull
     private int quantity;
+    private ProductUnit productUnit;
 
     private List<RawMaterialQuantity> rawMaterialQuantities = new ArrayList<>();
 
     public ProductForm() {}
 
-    public ProductForm(Long id, String name, int quantity, List<RawMaterialQuantity> rawMaterialQuantities) {
+    public ProductForm(Long id, String name, int quantity, ProductUnit productUnit, List<RawMaterialQuantity> rawMaterialQuantities) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
+        this.productUnit = productUnit;
         this.rawMaterialQuantities = rawMaterialQuantities;
     }
 
@@ -53,6 +55,14 @@ public class ProductForm {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public ProductUnit getProductUnit() {
+        return productUnit;
+    }
+
+    public void setProductUnit(ProductUnit productUnit) {
+        this.productUnit = productUnit;
     }
 
     public List<RawMaterialQuantity> getRawMaterialQuantities() {

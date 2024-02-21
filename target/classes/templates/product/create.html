@@ -39,6 +39,12 @@
                            th:value="*{quantity}">
                     <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
                 </div>
+
+                <label for="product_unit" class="form-label">Tipo de unidade</label>
+                <select class="form-control" id="product_unit" name="unit" th:field="*{productUnit}">
+                    <option th:each="productUnit : ${productUnit}" th:value="${productUnit}" th:text="${productUnit.getDisplayName()}"></option>
+                </select>
+                <p th:if="${#fields.hasErrors('productUnit')}" th:errorclass="error" th:errors="*{productUnit}"></p>
             </div>
 
             <div class="product-container">

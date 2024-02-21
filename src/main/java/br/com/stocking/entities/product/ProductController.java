@@ -39,6 +39,7 @@ public class ProductController {
         List<RawMaterial> rawMaterialList = rawMaterialRepository.findAll();
         model.addAttribute("productForm", form);
         model.addAttribute("unit", Unit.values());
+        model.addAttribute("productUnit", ProductUnit.values());
         model.addAttribute("rawMaterialList", rawMaterialList);
         return "product/create";
     }
