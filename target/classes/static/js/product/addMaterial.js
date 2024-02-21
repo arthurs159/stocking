@@ -3,13 +3,17 @@ var selectedRawMaterials = [];
 function addSelectedRawMaterial() {
     var rawMaterialSelect = document.getElementById('rawMaterialSelect');
     var quantityInput = document.getElementById('quantityInput');
+    var unitSelect = document.getElementById('unitSelect');
 
     var rawMaterialId = rawMaterialSelect.value;
     var quantity = quantityInput.value;
+    var unit = unitSelect.value;
     var materialName = Array.from(rawMaterialSelect.options).find(option => option.value === rawMaterialId).textContent;
+    var unitName = Array.from(unitSelect.options).find(option => option.value === unit).textContent;
 
     if (rawMaterialId && quantity) {
-        selectedRawMaterials.push({ rawMaterialId: rawMaterialId, quantity: quantity, materialName: materialName });
+        selectedRawMaterials.push({ rawMaterialId: rawMaterialId, quantity: quantity, materialUnit: unit,
+            materialName: materialName, materialUnitName: unitName});
         clearInputFields();
         updateSelectedRawMaterialsList();
         updateHiddenInputs();
@@ -27,7 +31,7 @@ function updateSelectedRawMaterialsList() {
 
     selectedRawMaterials.forEach(function (item, index) {
         var listItem = document.createElement('li');
-        listItem.textContent = item.quantity + ' ' + item.materialName +'(s)';
+        listItem.textContent = `${item.quantity}${item.materialUnitName} de ${item.materialName}(s)`
 
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Excluir';
@@ -53,6 +57,7 @@ function updateHiddenInputs() {
     selectedRawMaterials.forEach(function (item, index) {
         hiddenInputsContainer.appendChild(createHiddenInput('rawMaterialId', index, item.rawMaterialId));
         hiddenInputsContainer.appendChild(createHiddenInput('quantity', index, item.quantity));
+        hiddenInputsContainer.appendChild(createHiddenInput('unit', index, item.materialUnit));
     });
 }
 

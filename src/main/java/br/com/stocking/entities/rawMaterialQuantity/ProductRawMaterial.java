@@ -2,6 +2,7 @@ package br.com.stocking.entities.rawMaterialQuantity;
 
 import br.com.stocking.entities.product.Product;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
+import br.com.stocking.entities.rawMaterial.Unit;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -29,12 +30,22 @@ public class ProductRawMaterial implements Serializable {
 
     private int quantity;
 
+    private Unit unit;
+
     public ProductRawMaterial() {}
 
     public ProductRawMaterial(Product product, RawMaterial rawMaterial, int quantity) {
         this.product = product;
         this.rawMaterial = rawMaterial;
         this.quantity = quantity;
+    }
+
+    public ProductRawMaterial(Long id, Product product, RawMaterial rawMaterial, int quantity, Unit unit) {
+        this.id = id;
+        this.product = product;
+        this.rawMaterial = rawMaterial;
+        this.quantity = quantity;
+        this.unit = unit;
     }
 
     public Long getId() {
@@ -51,5 +62,9 @@ public class ProductRawMaterial implements Serializable {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public Unit getUnit() {
+        return unit;
     }
 }

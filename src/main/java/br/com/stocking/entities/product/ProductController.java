@@ -1,7 +1,6 @@
 package br.com.stocking.entities.product;
 
-import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.RawMaterialRepository;
+import br.com.stocking.entities.rawMaterial.*;
 import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
@@ -39,6 +38,7 @@ public class ProductController {
     public String rawMaterialFormPage(Model model, ProductForm form) {
         List<RawMaterial> rawMaterialList = rawMaterialRepository.findAll();
         model.addAttribute("productForm", form);
+        model.addAttribute("unit", Unit.values());
         model.addAttribute("rawMaterialList", rawMaterialList);
         return "product/create";
     }

@@ -42,9 +42,14 @@
             </div>
 
             <div class="product-container">
+                <label for="rawMaterialSelect"></label>
                 <select id="rawMaterialSelect">
-                    <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}"
-                            th:text="${rawMaterial.name}"></option>
+                    <option th:each="rawMaterial : ${rawMaterialList}" th:value="${rawMaterial.id}" th:text="${rawMaterial.name}"></option>
+                </select>
+
+                <label for="unitSelect"></label>
+                <select id="unitSelect">
+                    <option th:each="unit : ${unit}" th:value="${unit}" th:text="${unit.getDisplayName()}"></option>
                 </select>
 
                 <input type="number" id="quantityInput" placeholder="Quantidade"/>
@@ -53,9 +58,6 @@
                 <div id="hiddenInputsContainer"></div>
             </div>
         </div>
-
-
-
 
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
