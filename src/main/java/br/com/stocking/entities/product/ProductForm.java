@@ -1,7 +1,6 @@
 package br.com.stocking.entities.product;
 
 import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
-import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -16,17 +15,18 @@ public class ProductForm {
     @NotNull
     private int quantity;
     private ProductUnit productUnit;
-
     private List<RawMaterialQuantity> rawMaterialQuantities = new ArrayList<>();
+    private int unitPrice;
 
     public ProductForm() {}
 
-    public ProductForm(Long id, String name, int quantity, ProductUnit productUnit, List<RawMaterialQuantity> rawMaterialQuantities) {
+    public ProductForm(Long id, String name, int quantity, ProductUnit productUnit, List<RawMaterialQuantity> rawMaterialQuantities, int unitPrice) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
         this.productUnit = productUnit;
         this.rawMaterialQuantities = rawMaterialQuantities;
+        this.unitPrice = unitPrice;
     }
 
     public Product toEntity() {
@@ -71,5 +71,13 @@ public class ProductForm {
 
     public void setRawMaterialQuantities(List<RawMaterialQuantity> rawMaterialQuantities) {
         this.rawMaterialQuantities = rawMaterialQuantities;
+    }
+
+    public int getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(int unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }

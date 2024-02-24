@@ -1,8 +1,9 @@
 package br.com.stocking.entities.product;
 
 
+import br.com.stocking.entities.product.repository.ProductRepository;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.RawMaterialRepository;
+import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,9 @@ public class ProductService {
         productRepository.save(product);
         productRawMaterialRepository.saveAll(productRawMaterials);
     }
+
+//    public int unitPriceCalculator(Product product, RawMaterial rawMaterial) {
+//        return 1;
+//    }
 
 }

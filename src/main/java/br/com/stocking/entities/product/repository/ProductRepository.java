@@ -1,5 +1,6 @@
-package br.com.stocking.entities.product;
+package br.com.stocking.entities.product.repository;
 
+import br.com.stocking.entities.product.Product;
 import br.com.stocking.entities.product.productView.ProductViewProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             GROUP BY p.id, p.name;
             """, nativeQuery = true)
     List<ProductViewProjection> findAllProductsWithPrice();
+
+
 }

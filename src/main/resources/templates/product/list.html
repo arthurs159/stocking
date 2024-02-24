@@ -23,6 +23,7 @@
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
             <th scope="col">Preço de custo</th>
+            <th scope="col">Informações adicionais</th>
             <th scope="col">Editar</th>
         </tr>
         </thead>
@@ -31,6 +32,11 @@
             <td th:text="${product.id}"></td>
             <td th:text="${product.name}"></td>
             <td th:text="${product.totalPrice}"></td>
+            <td>
+                <a th:href="@{/product/details/{id}(id=${product.id})}">
+                    Detalhes
+                </a>
+            </td>
             <!--                <td>-->
             <!--                    <a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">-->
             <!--                        Editar-->
