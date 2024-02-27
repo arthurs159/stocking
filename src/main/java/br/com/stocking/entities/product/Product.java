@@ -1,6 +1,7 @@
 package br.com.stocking.entities.product;
 
 import br.com.stocking.entities.rawMaterial.RawMaterial;
+import br.com.stocking.entities.sale.SaleItem;
 import jakarta.persistence.*;
 
 import java.io.Serial;

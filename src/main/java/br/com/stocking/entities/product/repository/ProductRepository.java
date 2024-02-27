@@ -19,6 +19,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             GROUP BY p.id, p.name;
             """, nativeQuery = true)
     List<ProductViewProjection> findAllProductsWithPrice();
-
-
 }
