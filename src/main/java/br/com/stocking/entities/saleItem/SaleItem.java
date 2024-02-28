@@ -1,7 +1,8 @@
-package br.com.stocking.entities.sale;
+package br.com.stocking.entities.saleItem;
 
 import br.com.stocking.entities.product.Product;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
+import br.com.stocking.entities.sale.Sale;
 import jakarta.persistence.*;
 
 @Entity

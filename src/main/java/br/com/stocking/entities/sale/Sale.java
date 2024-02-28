@@ -2,6 +2,7 @@ package br.com.stocking.entities.sale;
 
 import br.com.stocking.entities.product.Product;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
+import br.com.stocking.entities.saleItem.SaleItem;
 import jakarta.persistence.*;
 
 import java.io.Serial;

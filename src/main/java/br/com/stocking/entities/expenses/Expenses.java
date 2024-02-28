@@ -41,7 +41,7 @@ public class Expenses implements Serializable {
         return name;
     }
 
-    public Double getValue() {
+    public Double getPrice() {
         return price;
     }
 
