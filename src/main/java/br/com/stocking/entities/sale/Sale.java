@@ -59,18 +59,4 @@ public class Sale implements Serializable {
     public List<SaleItem> getSaleItems() {
         return saleItems;
     }
-
-    public List<Product> getProducts() {
-        return saleItems.stream()
-                .map(SaleItem::getProduct)
-                .filter(Objects::nonNull)
-                .toList();
-    }
-
-    public List<RawMaterial> getRawMaterials() {
-        return saleItems.stream()
-                .map(SaleItem::getRawMaterial)
-                .filter(Objects::nonNull)
-                .toList();
-    }
 }

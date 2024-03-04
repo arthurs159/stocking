@@ -17,7 +17,7 @@ public class ExpensesController {
     }
 
 
-    @GetMapping("/sales")
+    @GetMapping("/expenses")
     public String listSales(Model model) {
         List<ExpensesView> expenses = expensesRepository.findAll().stream().map(ExpensesView::new).toList();
 
