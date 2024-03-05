@@ -22,13 +22,16 @@ public class SaleItem {
 
     private Long itemId;
 
+    private int quantity;
+
     public SaleItem() {}
 
-    public SaleItem(Long id, Sale sale, ItemType itemType, Long itemId) {
+    public SaleItem(Long id, Sale sale, ItemType itemType, Long itemId, int quantity) {
         this.id = id;
         this.sale = sale;
         this.itemType = itemType;
         this.itemId = itemId;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -45,5 +48,9 @@ public class SaleItem {
 
     public Long getItemId() {
         return itemId;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 }

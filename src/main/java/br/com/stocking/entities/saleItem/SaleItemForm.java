@@ -7,15 +7,16 @@ public class SaleItemForm {
     private Sale sale;
     private ItemType itemType;
     private Long itemId;
+    private int quantity;
 
-    public SaleItemForm() {
-    }
+    public SaleItemForm() {}
 
-    public SaleItemForm(Long id, Sale sale, ItemType itemType, Long itemId) {
+    public SaleItemForm(Long id, Sale sale, ItemType itemType, Long itemId, int quantity) {
         this.id = id;
         this.sale = sale;
         this.itemType = itemType;
         this.itemId = itemId;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -48,5 +49,13 @@ public class SaleItemForm {
 
     public void setItemId(Long itemId) {
         this.itemId = itemId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

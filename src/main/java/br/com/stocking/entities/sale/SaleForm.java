@@ -1,9 +1,10 @@
 package br.com.stocking.entities.sale;
 
-import br.com.stocking.entities.saleItem.SaleItem;
-import br.com.stocking.entities.saleItem.SaleItemForm;
+import br.com.stocking.entities.saleItem.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SaleForm {
     private Long id;
@@ -20,8 +21,18 @@ public class SaleForm {
         this.saleItems = saleItems;
     }
 
-    public Sale toEntity() {
-        return new Sale(this.getId(), this.getTotalPrice(), this.getPaymentMethod(), saleConverter(this.saleItems));
+    public SaleForm(Long id, Double totalPrice, PaymentMethods paymentMethod) {
+        this.id = id;
+        this.totalPrice = totalPrice;
+        this.paymentMethod = paymentMethod;
+    }
+
+    public List<SaleItem> saleItems(List<SaleItemForm> forms, Sale sale) {
+        return forms.stream().map(saleItem -> toSaleEntity(saleItem, sale)).toList();
+    }
+
+    public SaleItem toSaleEntity(SaleItemForm form, Sale sale) {
+        return new SaleItem(form.getId(), sale, form.getItemType(), form.getItemId(), form.getQuantity());
     }
 
     public Long getId() {
@@ -56,12 +67,24 @@ public class SaleForm {
         this.saleItems = saleItems;
     }
 
-    public List<SaleItem> saleConverter(List<SaleItemForm> forms) {
-        return forms.stream()
-                .map(this::toSaleEntity).toList();
+//    public List<Long> getAllRawMaterialIds() {
+//        return this.getSaleItems().stream()
+//                .filter(this::isRawMaterial)
+//                .map(SaleItemForm::getItemId)
+//                .toList();
+//    }
+
+    public Map<Long, Integer> getRawMaterialIdAndQuantity() {
+        return this.getSaleItems().stream()
+                .filter(this::isRawMaterial)
+                .collect(Collectors.toMap(
+                        SaleItemForm::getItemId,
+                        SaleItemForm::getQuantity,
+                        Integer::sum
+                ));
     }
 
-    public SaleItem toSaleEntity(SaleItemForm form) {
-        return new SaleItem(form.getId(), form.getSale(), form.getItemType(), form.getItemId());
+    private boolean isRawMaterial(SaleItemForm item) {
+        return item.getItemType().equals(ItemType.RAW_MATERIAL);
     }
 }

@@ -14,4 +14,7 @@ public interface RawMaterialRepository extends JpaRepository<RawMaterial, Long> 
         WHERE PRM.PRODUCT_ID  =  :productId 
     """, nativeQuery = true)
     List<RawMaterial> findAllByProductId(Long productId);
+
+    List<RawMaterial> findAllByIdIn(List<Long> ids);
+
 }
