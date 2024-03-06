@@ -29,8 +29,12 @@ public class ProductForm {
         this.unitPrice = unitPrice;
     }
 
-    public Product toEntity() {
-        return new Product(this.name, this.quantity);
+    public List<Long> getRawMaterialIds() {
+        return this.rawMaterialQuantities.stream().map(RawMaterialQuantity::getRawMaterialId).toList();
+    }
+
+    public Product toEntity(Double unitPrice) {
+        return new Product(this.name, this.quantity, unitPrice);
     }
 
     public Long getId() {

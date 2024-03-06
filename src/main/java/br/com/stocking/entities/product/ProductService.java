@@ -26,10 +26,9 @@ public class ProductService {
         this.productRawMaterialRepository = productRawMaterialRepository;
     }
 
-
     public void createProductWithRawMaterials(ProductForm productForm) {
         if (isNull(productForm)) return;
-        Product product = productForm.toEntity();
+        Product product = productForm.toEntity(calcProductPrice(productForm));
 
         List<ProductRawMaterial> productRawMaterials = productForm.getRawMaterialQuantities().stream()
                 .map(rawMaterialQuantity -> {
@@ -42,8 +41,12 @@ public class ProductService {
         productRawMaterialRepository.saveAll(productRawMaterials);
     }
 
-//    public int unitPriceCalculator(Product product, RawMaterial rawMaterial) {
-//        return 1;
-//    }
+    private double calcProductPrice(ProductForm form) {
+        List<RawMaterial> rawMaterials = rawMaterialRepository.findAllByIdIn(form.getRawMaterialIds());
+
+        return rawMaterials.stream()
+                .mapToDouble(RawMaterial::getPrice)
+                .sum();
+    }
 
 }

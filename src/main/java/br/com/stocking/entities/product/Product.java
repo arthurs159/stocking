@@ -20,7 +20,7 @@ public class Product implements Serializable {
 
     private String name;
     private int quantity;
-//    private int unitPrice;
+    private double unitPrice;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RawMaterial> rawMaterialList = new ArrayList<>();
@@ -35,10 +35,10 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public Product(String name, int quantity, int unitPrice) {
+    public Product(String name, int quantity, double unitPrice) {
         this.name = name;
         this.quantity = quantity;
-//        this.unitPrice = unitPrice;
+        this.unitPrice = unitPrice;
     }
 
     public Long getId() {
@@ -53,9 +53,9 @@ public class Product implements Serializable {
         return quantity;
     }
 
-//    public int getUnitPrice() {
-//        return unitPrice;
-//    }
+    public double getUnitPrice() {
+        return unitPrice;
+    }
 
     public List<RawMaterial> getRawMaterialList() {
         return rawMaterialList;

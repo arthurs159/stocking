@@ -67,13 +67,6 @@ public class SaleForm {
         this.saleItems = saleItems;
     }
 
-//    public List<Long> getAllRawMaterialIds() {
-//        return this.getSaleItems().stream()
-//                .filter(this::isRawMaterial)
-//                .map(SaleItemForm::getItemId)
-//                .toList();
-//    }
-
     public Map<Long, Integer> getRawMaterialIdAndQuantity() {
         return this.getSaleItems().stream()
                 .filter(this::isRawMaterial)
@@ -84,7 +77,21 @@ public class SaleForm {
                 ));
     }
 
+    public Map<Long, Integer> getProductIdAndQuantity() {
+        return this.getSaleItems().stream()
+                .filter(this::isProduct)
+                .collect(Collectors.toMap(
+                        SaleItemForm::getItemId,
+                        SaleItemForm::getQuantity,
+                        Integer::sum
+                ));
+    }
+
     private boolean isRawMaterial(SaleItemForm item) {
         return item.getItemType().equals(ItemType.RAW_MATERIAL);
+    }
+
+    private boolean isProduct(SaleItemForm item) {
+        return item.getItemType().equals(ItemType.PRODUCT);
     }
 }
