@@ -47,6 +47,6 @@ public class SaleService {
                 .mapToDouble(product -> product.getUnitPrice() * productIdAndQuantity.getOrDefault(product.getId(), 0))
                 .sum();
 
-        return sumMaterial + sumProductPrice;
+        return sumMaterial + sumProductPrice + form.getTotalPrice();
     }
 }

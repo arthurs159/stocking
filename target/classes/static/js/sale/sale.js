@@ -76,5 +76,7 @@ document.querySelector('#save-button').addEventListener('click', () => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(saleForm),
+    }).then(() => {
+        window.location.href = '/sales';
     })
 })

@@ -49,6 +49,7 @@ public class SaleController {
     public String createNewSale(@RequestBody SaleForm saleForm, BindingResult result, Model model) {
         if (result.hasErrors()) return "sales/create";
         saleService.saveSale(saleForm);
-        return "sales/list";
+        return "redirect:/sales/list";
     }
+
 }
