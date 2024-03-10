@@ -30,14 +30,12 @@ public class Product implements Serializable {
 
     public Product() {}
 
-    public Product(String name, int quantity) {
+    public Product(String name) {
         this.name = name;
-        this.quantity = quantity;
     }
 
-    public Product(String name, int quantity, double unitPrice) {
+    public Product(String name,double unitPrice) {
         this.name = name;
-        this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
 

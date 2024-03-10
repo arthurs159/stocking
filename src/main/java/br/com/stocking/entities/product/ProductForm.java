@@ -34,7 +34,7 @@ public class ProductForm {
     }
 
     public Product toEntity(Double unitPrice) {
-        return new Product(this.name, this.quantity, unitPrice);
+        return new Product(this.name, unitPrice);
     }
 
     public Long getId() {
