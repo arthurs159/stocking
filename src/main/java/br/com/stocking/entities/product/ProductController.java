@@ -1,12 +1,11 @@
 package br.com.stocking.entities.product;
 
-import br.com.stocking.entities.product.productView.ProductViewProjection;
 import br.com.stocking.entities.product.repository.ProductRepository;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.Unit;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepositoryCustom;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
+import br.com.stocking.entities.utils.Unit;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +33,7 @@ public class ProductController {
 
     @GetMapping("/product/list")
     public String getProductPage(Model model) {
-        model.addAttribute("products", productRepository.findAllProductsWithPrice());
+        model.addAttribute("products", productRepository.findAll());
         return "product/list";
     }
 

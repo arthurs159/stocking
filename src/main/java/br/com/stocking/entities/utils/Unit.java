@@ -1,4 +1,4 @@
-package br.com.stocking.entities.rawMaterial;
+package br.com.stocking.entities.utils;
 
 import static org.apache.logging.log4j.util.Strings.isBlank;
 

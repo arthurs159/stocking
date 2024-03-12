@@ -1,5 +1,6 @@
 package br.com.stocking.entities.rawMaterial;
 
+import br.com.stocking.entities.utils.Unit;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,7 +18,8 @@ public class RawMaterialForm {
     private Unit unit;
     private LocalDate expiredDate;
 
-    public RawMaterialForm() {}
+    public RawMaterialForm() {
+    }
 
     public RawMaterialForm(Long id, String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
         this.id = id;

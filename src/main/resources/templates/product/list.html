@@ -29,9 +29,9 @@
         </thead>
         <tbody>
         <tr th:each="product : ${products}">
-            <td th:text="${product.id}"></td>
-            <td th:text="${product.name}"></td>
-            <td th:text="${product.totalPrice}"></td>
+            <td th:text="${product.getId()}"></td>
+            <td th:text="${product.getName()}"></td>
+            <td th:text="${product.getUnitPrice()}"></td>
             <td>
                 <a th:href="@{/product/details/{id}(id=${product.id})}">
                     Detalhes

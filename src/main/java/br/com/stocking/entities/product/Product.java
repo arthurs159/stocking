@@ -34,7 +34,7 @@ public class Product implements Serializable {
         this.name = name;
     }
 
-    public Product(String name,double unitPrice) {
+    public Product(String name, double unitPrice) {
         this.name = name;
         this.unitPrice = unitPrice;
     }

@@ -1,6 +1,7 @@
 package br.com.stocking.entities.rawMaterial;
 
 import br.com.stocking.entities.product.Product;
+import br.com.stocking.entities.utils.Unit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -9,8 +10,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import static jakarta.persistence.GenerationType.*;
-import static java.time.LocalDate.*;
+import static jakarta.persistence.GenerationType.IDENTITY;
+import static java.time.LocalDate.now;
 
 @Entity
 public class RawMaterial implements Serializable {
@@ -33,7 +34,8 @@ public class RawMaterial implements Serializable {
     @JoinColumn(name = "productId")
     private Product product;
 
-    public RawMaterial() {}
+    public RawMaterial() {
+    }
 
     public RawMaterial(String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;

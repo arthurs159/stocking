@@ -1,6 +1,7 @@
 package br.com.stocking.entities.rawMaterial;
 
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
+import br.com.stocking.entities.utils.Unit;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

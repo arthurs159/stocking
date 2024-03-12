@@ -3,11 +3,12 @@ package br.com.stocking.entities.product;
 
 import br.com.stocking.entities.product.repository.ProductRepository;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.Unit;
 import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
+import br.com.stocking.entities.utils.PriceConverter;
+import br.com.stocking.entities.utils.Unit;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,31 +32,20 @@ public class ProductService {
 
     public void createProductWithRawMaterials(ProductForm productForm) {
         if (isNull(productForm)) return;
-        Product product = productForm.toEntity(calcProductPrice(productForm));
+        Product product = productForm.toEntity(calcProductPrices(productForm));
 
         List<ProductRawMaterial> productRawMaterials = productForm.getRawMaterialQuantities().stream()
                 .map(rawMaterialQuantity -> {
                     RawMaterial rawMaterial = rawMaterialRepository.findById(rawMaterialQuantity.getRawMaterialId())
                             .orElseThrow(() -> new RuntimeException("RawMaterial not found for ID: " + rawMaterialQuantity.getRawMaterialId()));
-                    return new ProductRawMaterial(product, rawMaterial, rawMaterialQuantity.getQuantity());
+                    return new ProductRawMaterial(product, rawMaterial, rawMaterialQuantity.getQuantity(), rawMaterialQuantity.getUnit());
                 }).toList();
 
         productRepository.save(product);
         productRawMaterialRepository.saveAll(productRawMaterials);
     }
 
-    private double calcProductPrice(ProductForm form) {
-
-        List<RawMaterial> rawMaterials = rawMaterialRepository.findAllByIdIn(form.getRawMaterialIds());
-
-        return rawMaterials.stream()
-                .mapToDouble(RawMaterial::getPrice)
-                .sum();
-    }
-
     private double calcProductPrices(ProductForm form) {
-        RawMaterialQuantity rawMaterialQuantity = new RawMaterialQuantity();
-
         List<RawMaterial> rawMaterials = rawMaterialRepository.findAllByIdIn(form.getRawMaterialIds());
 
         double totalPrice = 0.0;
@@ -66,10 +56,12 @@ public class ProductService {
                     .findFirst();
 
             if (optionalQuantity.isPresent()) {
-                double quantity = optionalQuantity.get().getQuantity();
-                Unit unit = optionalQuantity.get().getUnit();
+                double quantityDesired = optionalQuantity.get().getQuantity();
+                Unit unitDesired = optionalQuantity.get().getUnit();
+                double pricePerUnit = rawMaterial.getPrice();
+                Unit unitStock = rawMaterial.getUnit();
 
-                double materialCost = calculateMaterialCost(rawMaterial.getPrice(), quantity, unit);
+                double materialCost = calculateCost(quantityDesired, pricePerUnit, unitStock, unitDesired);
                 totalPrice += materialCost;
             }
         }
@@ -77,8 +69,25 @@ public class ProductService {
         return totalPrice;
     }
 
-    private double calculateMaterialCost(double pricePerUnit, double quantity, Unit unit) {
-        return pricePerUnit * quantity;
+    public double calculateCost(double quantityDesired, double pricePerUnit, Unit unitStock, Unit unitDesired) {
+        double pricePerUnitInDesiredUnit = convertPriceToDesiredUnit(pricePerUnit, unitStock, unitDesired);
+        return pricePerUnitInDesiredUnit * quantityDesired;
+    }
+
+    private double convertPriceToDesiredUnit(double pricePerUnit, Unit unitStock, Unit unitDesired) {
+        if (unitStock == unitDesired) {
+            return pricePerUnit;
+        }
+
+        if (unitStock == Unit.KILOGRAMS && unitDesired == Unit.GRAMS) {
+            return pricePerUnit / 1000.0;
+        }
+
+        if (unitStock == Unit.LITERS && unitDesired == Unit.MILLILITERS) {
+            return pricePerUnit / 1000.0;
+        }
+
+        return pricePerUnit;
     }
 
 }

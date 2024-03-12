@@ -28,7 +28,7 @@
         <tbody>
         <tr th:each="rawMaterial : ${productDetails}">
             <td th:text="${rawMaterial.getRawMaterials().getName()}"></td>
-            <td th:text="${rawMaterial.getQuantity()} + ' ' + ${rawMaterial.getRawMaterials().unit.getDisplayName()}"></td>
+            <td th:text="${rawMaterial.getQuantity()}"></td>
         </tr>
         </tbody>
     </table>

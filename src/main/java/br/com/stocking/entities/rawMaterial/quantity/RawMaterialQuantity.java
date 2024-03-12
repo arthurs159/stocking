@@ -1,8 +1,7 @@
 package br.com.stocking.entities.rawMaterial.quantity;
 
-import br.com.stocking.entities.product.ProductForm;
 import br.com.stocking.entities.rawMaterial.RawMaterial;
-import br.com.stocking.entities.rawMaterial.Unit;
+import br.com.stocking.entities.utils.Unit;
 
 public class RawMaterialQuantity {
 
@@ -11,7 +10,8 @@ public class RawMaterialQuantity {
     private int quantity;
     private Unit unit;
 
-    public RawMaterialQuantity() {}
+    public RawMaterialQuantity() {
+    }
 
     public RawMaterialQuantity(Long rawMaterialId, int quantity, Unit unit) {
         this.rawMaterialId = rawMaterialId;
