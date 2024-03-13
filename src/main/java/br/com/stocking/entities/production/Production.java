@@ -1,7 +1,7 @@
 package br.com.stocking.entities.production;
 
 import br.com.stocking.entities.company.Company;
-import br.com.stocking.entities.product.Product;
+import br.com.stocking.entities.production.productQuantity.ProductQuantity;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class Production implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "production_id")
-    private List<Product> products = new ArrayList<>();
+    private List<ProductQuantity> productQuantities = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "company_id")
@@ -28,10 +28,12 @@ public class Production implements Serializable {
     public Production() {
     }
 
-    public Production(Long id, int quantity, List<Product> products) {
-        this.id = id;
-        this.quantity = quantity;
-        this.products = products;
+    public void addProductQuantity(ProductQuantity productQuantity) {
+        productQuantities.add(productQuantity);
+    }
+
+    public void removeProductQuantity(ProductQuantity productQuantity) {
+        productQuantities.remove(productQuantity);
     }
 
     public Long getId() {
@@ -42,11 +44,11 @@ public class Production implements Serializable {
         return quantity;
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
     public Company getCompany() {
         return company;
+    }
+
+    public List<ProductQuantity> getProductQuantities() {
+        return productQuantities;
     }
 }

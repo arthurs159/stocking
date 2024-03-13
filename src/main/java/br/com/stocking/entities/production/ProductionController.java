@@ -5,6 +5,7 @@ import br.com.stocking.entities.product.repository.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,4 +25,11 @@ public class ProductionController {
         model.addAttribute("products", products);
         return "production/production";
     }
+
+    @PostMapping("/production/add")
+    private String addProductionProduct() {
+        return "";
+    }
+
+
 }
