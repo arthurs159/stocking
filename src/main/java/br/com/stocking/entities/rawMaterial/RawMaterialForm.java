@@ -1,8 +1,10 @@
 package br.com.stocking.entities.rawMaterial;
 
 import br.com.stocking.entities.utils.Unit;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.time.LocalDate;
 
@@ -11,51 +13,59 @@ public class RawMaterialForm {
     private Long id;
     @NotEmpty(message = "ERRO !!!!!!!!!!!!!!!!!!!!!")
     private String name;
-    @NotNull
-    private double price;
-    @NotNull
-    private int quantity;
+    @NotNull(message = "Não pode ser vazio")
+    private Double unitPrice;
+    @NotNull(message = "Não pode ser vazio")
+    private Double totalPrice;
+    private int quantity = 0;
     private Unit unit;
     private LocalDate expiredDate;
 
-    public RawMaterialForm() {
-    }
+    public RawMaterialForm() {}
 
-    public RawMaterialForm(Long id, String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
-        this.id = id;
+    public RawMaterialForm(String name, Double unitPrice, Double totalPrice, int quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;
-        this.price = price;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
         this.quantity = quantity;
         this.unit = unit;
         this.expiredDate = expiredDate;
     }
 
     public RawMaterial toEntity() {
-        return new RawMaterial(this.name, this.price, this.quantity, this.unit, this.expiredDate);
+        return new RawMaterial(this.name, this.unitPrice, this.totalPrice, this.quantity, this.unit, this.expiredDate);
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public int getQuantity() {
@@ -66,19 +76,19 @@ public class RawMaterialForm {
         this.quantity = quantity;
     }
 
-    public LocalDate getExpiredDate() {
-        return expiredDate;
-    }
-
-    public void setExpiredDate(LocalDate expiredDate) {
-        this.expiredDate = expiredDate;
-    }
-
     public Unit getUnit() {
         return unit;
     }
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public LocalDate getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(LocalDate expiredDate) {
+        this.expiredDate = expiredDate;
     }
 }

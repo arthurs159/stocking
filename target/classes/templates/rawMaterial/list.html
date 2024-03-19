@@ -14,7 +14,10 @@
 <div class="content-container">
     <div class="title-container">
         <h2>Materiais</h2>
-        <button><a href="/create/rawMaterial">Criar Material</a></button>
+        <div>
+            <button><a href="/create/rawMaterial">Adicionar Material</a></button>
+            <button><a href="/create/rawMaterial">Criar Material</a></button>
+        </div>
     </div>
 
     <table class="table">
@@ -32,7 +35,7 @@
         <tr th:each="material : ${materialList}">
             <td th:text="${material.id}"></td>
             <td th:text="${material.name}"></td>
-            <td th:text="${material.price}"></td>
+            <td th:text="${material.getUnitPrice()}"></td>
             <td th:text="${material.quantity} + ' ' + ${material.getUnit().getDisplayName()}"></td>
             <td th:text="${material.expiredDate}"></td>
             <td><a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">Editar</a></td>

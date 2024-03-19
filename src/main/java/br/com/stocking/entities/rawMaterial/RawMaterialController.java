@@ -1,11 +1,13 @@
 package br.com.stocking.entities.rawMaterial;
 
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
+import br.com.stocking.entities.rawMaterial.validator.NumberValidator;
 import br.com.stocking.entities.utils.Unit;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,15 @@ import java.util.Optional;
 public class RawMaterialController {
 
     private final RawMaterialRepository rawMaterialRepository;
+    private final NumberValidator numberValidator;
 
-    public RawMaterialController(RawMaterialRepository rawMaterialRepository) {
+    public RawMaterialController(RawMaterialRepository rawMaterialRepository, NumberValidator numberValidator) {
         this.rawMaterialRepository = rawMaterialRepository;
+        this.numberValidator = numberValidator;
     }
+
+    @InitBinder("materialForm")
+    public void initBinder(WebDataBinder webDataBinder) { webDataBinder.addValidators(numberValidator); }
 
     @GetMapping({"/list/rawMaterial", "/"})
     public String listRawMaterial(Model model) {
@@ -30,7 +37,7 @@ public class RawMaterialController {
 
     @GetMapping("/create/rawMaterial")
     public String rawMaterialFormPage(Model model, RawMaterialForm form) {
-        model.addAttribute("materialForm", new RawMaterialForm());
+        model.addAttribute("materialForm", form);
         model.addAttribute( "units", Unit.values());
         return "rawMaterial/rawMaterialInsert";
     }
@@ -39,6 +46,7 @@ public class RawMaterialController {
     public String createRawMaterial(@ModelAttribute("materialForm") @Valid RawMaterialForm materialForm, BindingResult result, Model model) {
         if(result.hasErrors()) {
             model.addAttribute("materialForm", materialForm);
+            model.addAttribute( "units", Unit.values());
             return "rawMaterial/rawMaterialInsert";
         }
 

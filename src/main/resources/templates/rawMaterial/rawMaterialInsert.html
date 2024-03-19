@@ -28,25 +28,47 @@
                    th:value="*{name}">
             <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}"></p>
         </div>
-        <div class="mb-3">
-            <label for="raw-material_price" class="form-label">Preço por unidade</label>
-            <input class="form-control" id="raw-material_price" name="price" th:field="*{price}"
-                   th:value="*{price}">
-            <p th:if="${#fields.hasErrors('price')}" th:errorclass="error" th:errors="*{price}"></p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="raw-material_quantity" class="form-label">Quantidade:</label>
+                    <input class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}"
+                           th:value="*{quantity}">
+                    <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="raw-material_unit" class="form-label">Unidade:</label>
+                    <select class="form-control" id="raw-material_unit" name="unit" th:field="*{unit}">
+                        <option th:each="unit : ${units}" th:value="${unit}"
+                                th:text="${unit.getDisplayName()}"></option>
+                    </select>
+                    <p th:if="${#fields.hasErrors('unit')}" th:errorclass="error" th:errors="*{unit}"></p>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="raw-material_quantity" class="form-label">Quantidade:</label>
-            <input class="form-control" id="raw-material_quantity" name="quantity" th:field="*{quantity}"
-                   th:value="*{quantity}">
-            <p th:if="${#fields.hasErrors('quantity')}" th:errorclass="error" th:errors="*{quantity}"></p>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="raw-material_price" class="form-label">Preço por unidade</label>
+                    <input class="form-control" id="raw-material_price" name="unitPrice" th:field="*{unitPrice}"
+                           th:value="*{unitPrice}">
+                    <p th:if="${#fields.hasErrors('unitPrice')}" th:errorclass="error" th:errors="*{unitPrice}"></p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="raw-material_total_price" class="form-label">Preço Total</label>
+                    <input class="form-control" id="raw-material_total_price" name="unitPrice" th:field="*{totalPrice}"
+                           th:value="*{totalPrice}">
+                    <p th:if="${#fields.hasErrors('totalPrice')}" th:errorclass="error" th:errors="*{totalPrice}"></p>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="raw-material_unit" class="form-label">Unidade:</label>
-            <select class="form-control" id="raw-material_unit" name="unit" th:field="*{unit}">
-                <option th:each="unit : ${units}" th:value="${unit}" th:text="${unit.getDisplayName()}"></option>
-            </select>
-            <p th:if="${#fields.hasErrors('unit')}" th:errorclass="error" th:errors="*{unit}"></p>
-        </div>
+
         <div class="mb-3">
             <label for="raw-material_expiredDate" class="form-label">Data de vencimento:</label>
             <input type="date" class="form-control" id="raw-material_expiredDate" name="expiredDate"
@@ -59,8 +81,7 @@
 </div>
 </body>
 
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         type="application/javascript"></script>
-
+<script src="/js/rawMaterial/rawMaterial.js"></script>
 </html>

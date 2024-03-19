@@ -59,45 +59,36 @@
         }
     }
 
-    var alteracoes = {}; // Objeto para armazenar as alterações de quantidade
-    var timer; // Variável para armazenar o temporizador
+    var alteracoes = {};
+    var timer;
 
     function registrarAlteracao(id, quantidade) {
         alteracoes[id] = quantidade;
     }
 
-    // Função para enviar as alterações para o servidor
     function enviarAlteracoesParaServidor() {
-        var alteracoesJSON = []; // Array para armazenar as alterações em formato JSON
-
-        // Itera sobre as chaves do objeto de alterações
+        var alteracoesJSON = [];
         for (var id in alteracoes) {
             if (alteracoes.hasOwnProperty(id)) {
                 alteracoesJSON.push({id: id, quantidade: alteracoes[id]});
             }
         }
 
-        // Envia as alterações para o servidor
         console.log('Alterações a serem enviadas:', alteracoesJSON);
-        // Aqui você faria a lógica para enviar os dados ao servidor
-
-        // Limpa o objeto de alterações após o envio
         alteracoes = {};
     }
 
-    // Função para agendar o envio das alterações após um intervalo de tempo
     function agendarEnvioAlteracoes() {
-        clearTimeout(timer); // Limpa o temporizador anterior, se existir
-        timer = setTimeout(enviarAlteracoesParaServidor, 3000); // Agenda o envio das alterações após 3 segundos
+        clearTimeout(timer);
+        timer = setTimeout(enviarAlteracoesParaServidor, 3000);
     }
 
-    // Adiciona listeners de evento para os botões de adição e subtração
     document.querySelectorAll('#productTable button').forEach(function(botao) {
         botao.addEventListener('click', function() {
             var id = this.parentNode.parentNode.querySelector('td:first-child').textContent.trim();
             var quantidade = parseInt(this.parentNode.parentNode.querySelector('input[type="text"]').value);
             console.log(quantidade);
-            registrarAlteracao(id, quantidade); // Registra a alteração de quantidade para o produto
+            registrarAlteracao(id, quantidade);
             agendarEnvioAlteracoes()
         });
     });

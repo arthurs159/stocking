@@ -40,7 +40,7 @@ public class SaleService {
         List<Product> allProduct = productRepository.findAllByIdIn(productIdAndQuantity.keySet().stream().toList());
 
         double sumMaterial = allMaterial.stream()
-                .mapToDouble(rawMaterial -> rawMaterial.getPrice() * rawMaterialIdAndQuantity.getOrDefault(rawMaterial.getId(), 0))
+                .mapToDouble(rawMaterial -> rawMaterial.getUnitPrice() * rawMaterialIdAndQuantity.getOrDefault(rawMaterial.getId(), 0))
                 .sum();
 
         double sumProductPrice = allProduct.stream()

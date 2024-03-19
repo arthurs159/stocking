@@ -7,7 +7,6 @@ import br.com.stocking.entities.rawMaterial.quantity.RawMaterialQuantity;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterial;
 import br.com.stocking.entities.rawMaterialQuantity.ProductRawMaterialRepository;
-import br.com.stocking.entities.utils.PriceConverter;
 import br.com.stocking.entities.utils.Unit;
 import org.springframework.stereotype.Service;
 
@@ -58,7 +57,7 @@ public class ProductService {
             if (optionalQuantity.isPresent()) {
                 double quantityDesired = optionalQuantity.get().getQuantity();
                 Unit unitDesired = optionalQuantity.get().getUnit();
-                double pricePerUnit = rawMaterial.getPrice();
+                double pricePerUnit = rawMaterial.getUnitPrice();
                 Unit unitStock = rawMaterial.getUnit();
 
                 double materialCost = calculateCost(quantityDesired, pricePerUnit, unitStock, unitDesired);

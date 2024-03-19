@@ -24,7 +24,9 @@ public class RawMaterial implements Serializable {
     @NotEmpty
     private String name;
     @NotNull
-    private double price;
+    private Double unitPrice;
+    @NotNull
+    private Double totalPrice;
     private int quantity;
     private Unit unit;
     private final LocalDate createdAt = now();
@@ -34,12 +36,12 @@ public class RawMaterial implements Serializable {
     @JoinColumn(name = "productId")
     private Product product;
 
-    public RawMaterial() {
-    }
+    public RawMaterial() {}
 
-    public RawMaterial(String name, double price, int quantity, Unit unit, LocalDate expiredDate) {
+    public RawMaterial(String name, double unitPrice, double totalPrice, int quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;
-        this.price = price;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
         this.quantity = quantity;
         this.unit = unit;
         this.expiredDate = expiredDate;
@@ -47,7 +49,8 @@ public class RawMaterial implements Serializable {
 
     public void merge(RawMaterialForm form) {
         this.name = form.getName();
-        this.price = form.getPrice();
+        this.unitPrice = form.getUnitPrice();
+        this.totalPrice = form.getTotalPrice();
         this.quantity = form.getQuantity();
         this.unit = form.getUnit();
         this.expiredDate = form.getExpiredDate();
@@ -61,8 +64,8 @@ public class RawMaterial implements Serializable {
         return name;
     }
 
-    public double getPrice() {
-        return price;
+    public Double getUnitPrice() {
+        return unitPrice;
     }
 
     public Product getProduct() {
@@ -84,4 +87,9 @@ public class RawMaterial implements Serializable {
     public Unit getUnit() {
         return unit;
     }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
 }
