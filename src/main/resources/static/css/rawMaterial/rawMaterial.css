@@ -1,0 +1,17 @@
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: auto; /* Define o lado esquerdo como automático */
+    right: -250px;
+    height: 100%;
+    background-color: #f3f3f3;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+#sidebar.aberto {
+    right: 0; /* Define a posição do sidebar para 0 para mostrar à direita da tela */
+}
+
