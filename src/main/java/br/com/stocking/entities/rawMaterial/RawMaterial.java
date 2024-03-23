@@ -27,7 +27,7 @@ public class RawMaterial implements Serializable {
     private Double unitPrice;
     @NotNull
     private Double totalPrice;
-    private int quantity;
+    private Double quantity;
     private Unit unit;
     private final LocalDate createdAt = now();
     private LocalDate expiredDate;
@@ -38,7 +38,7 @@ public class RawMaterial implements Serializable {
 
     public RawMaterial() {}
 
-    public RawMaterial(Long id, String name, double unitPrice, double totalPrice, int quantity, Unit unit, LocalDate expiredDate) {
+    public RawMaterial(Long id, String name, double unitPrice, double totalPrice, Double quantity, Unit unit, LocalDate expiredDate) {
         this.id = id;
         this.name = name;
         this.unitPrice = unitPrice;
@@ -48,7 +48,7 @@ public class RawMaterial implements Serializable {
         this.expiredDate = expiredDate;
     }
 
-    public RawMaterial(String name, double unitPrice, double totalPrice, int quantity, Unit unit, LocalDate expiredDate) {
+    public RawMaterial(String name, double unitPrice, double totalPrice, Double quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
@@ -66,8 +66,8 @@ public class RawMaterial implements Serializable {
         this.expiredDate = form.getExpiredDate();
     }
 
-    public void addMaterialQuantity(RawMaterialAddForm form) {
-        this.quantity += form.getQuantity();
+    public void addNewMaterialQuantity(double quantity) {
+        this.quantity += quantity;
     }
 
     public Long getId() {
@@ -86,7 +86,7 @@ public class RawMaterial implements Serializable {
         return product;
     }
 
-    public int getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 

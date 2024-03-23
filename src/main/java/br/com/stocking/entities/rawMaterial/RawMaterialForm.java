@@ -17,13 +17,13 @@ public class RawMaterialForm {
     private Double unitPrice;
     @NotNull(message = "Não pode ser vazio")
     private Double totalPrice;
-    private int quantity = 0;
+    private Double quantity = 0.0;
     private Unit unit;
     private LocalDate expiredDate;
 
     public RawMaterialForm() {}
 
-    public RawMaterialForm(String name, Double unitPrice, Double totalPrice, int quantity, Unit unit, LocalDate expiredDate) {
+    public RawMaterialForm(String name, Double unitPrice, Double totalPrice, Double quantity, Unit unit, LocalDate expiredDate) {
         this.name = name;
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
@@ -68,11 +68,11 @@ public class RawMaterialForm {
         this.totalPrice = totalPrice;
     }
 
-    public int getQuantity() {
+    public Double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Double quantity) {
         this.quantity = quantity;
     }
 

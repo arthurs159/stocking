@@ -38,7 +38,7 @@
             <td th:text="${material.id}"></td>
             <td th:text="${material.name}"></td>
             <td th:text="${material.getUnitPrice()}"></td>
-            <td th:text="${material.quantity} + ' ' + ${material.getUnit().getDisplayName()}"></td>
+            <td th:data-material-unit="${material.getUnit()}" th:text="${material.quantity} + ' ' + ${material.getUnit().getDisplayName()}"></td>
             <td th:text="${material.expiredDate}"></td>
             <td><a class="btn btn-primary addRawMaterial" th:data-material-id="${material.id}">Adicionar</a></td>
             <td><a th:href="@{/update/rawMaterial/{id}(id=${material.id})}">Editar</a></td>
@@ -52,8 +52,16 @@
     <h2>Adicionar Quantidade</h2>
     <form id="formularioAdicao">
         <input type="hidden" id="materialId" name="materialId">
+
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name">
+
         <label for="quantidade">Quantidade:</label>
         <input type="text" id="quantidade" name="quantidade">
+
+        <label for="unidades">Unidade:</label>
+        <select id="unidades" name="unidades"></select>
+
         <button type="submit">Adicionar</button>
     </form>
 </div>
