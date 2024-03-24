@@ -1,6 +1,6 @@
 package br.com.stocking.entities.rawMaterial.validator;
 
-import br.com.stocking.entities.rawMaterial.RawMaterialForm;
+import br.com.stocking.entities.rawMaterial.forms.RawMaterialForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

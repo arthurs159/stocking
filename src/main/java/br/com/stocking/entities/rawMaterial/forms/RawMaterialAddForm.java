@@ -1,11 +1,14 @@
-package br.com.stocking.entities.rawMaterial;
+package br.com.stocking.entities.rawMaterial.forms;
 
+import br.com.stocking.entities.rawMaterial.RawMaterial;
 import br.com.stocking.entities.utils.Unit;
+import br.com.stocking.entities.utils.unitCalc.MaterialConverter;
 
 public class RawMaterialAddForm {
     private Long id;
     private Double quantity;
     private Unit unit;
+    private double price;
 
     public RawMaterialAddForm() {}
 
@@ -14,25 +17,19 @@ public class RawMaterialAddForm {
         this.quantity = quantity;
     }
 
+    public RawMaterialAddForm(Long id, Double quantity, double price) {
+        this.id = id;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public RawMaterialAddForm(RawMaterial rawMaterial) {
         this.id = rawMaterial.getId();
 //        this.quantity = rawMaterial.getQuantity() + convertToMaterialUnit(this.quantity, unit);
     }
 
     public double materialValueQuantity(Unit unitToAdd) {
-        if (this.unit == unitToAdd) {
-            return this.quantity;
-        } else if (this.unit == Unit.GRAMS && unitToAdd == Unit.KILOGRAMS) {
-            return this.quantity / 1000;
-        } else if (this.unit == Unit.KILOGRAMS && unitToAdd == Unit.GRAMS) {
-            return this.quantity * 1000;
-        } else if (this.unit == Unit.LITERS && unitToAdd == Unit.MILLILITERS) {
-            return this.quantity / 1000;
-        } else if (this.unit == Unit.MILLILITERS && unitToAdd == Unit.LITERS) {
-            return this.quantity * 1000;
-        } else {
-            throw new IllegalArgumentException("Não é possível adicionar quantidade devido a unidades incompatíveis.");
-        }
+        return MaterialConverter.materialValueQuantity(this.quantity, this.unit, unitToAdd);
     }
 
 
@@ -58,5 +55,13 @@ public class RawMaterialAddForm {
 
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

@@ -1,5 +1,6 @@
 package br.com.stocking.entities.rawMaterial;
 
+import br.com.stocking.entities.rawMaterial.forms.RawMaterialForm;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.rawMaterial.validator.NumberValidator;
 import br.com.stocking.entities.utils.Unit;

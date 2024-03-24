@@ -10,7 +10,8 @@ let materialId;
 addRawMaterial.forEach(function (button) {
     button.addEventListener("click", function () {
         materialId = button.dataset.materialId;
-        getCompatibleUnits(button.closest('tr').querySelector('td:nth-child(4)').dataset.materialUnit)
+        const materialUnit = button.closest('tr').querySelector('td:nth-child(5)').dataset.materialUnit
+        getCompatibleUnits(materialUnit)
         nameInput.value = button.closest('tr').querySelector('td:nth-child(2)').textContent.trim();
         sidebar.style.right = "0";
     });
@@ -30,8 +31,6 @@ function getCompatibleUnits(compatibleUnit) {
     xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
             const unidadesCompativeis = JSON.parse(xhr.responseText);
-            console.log(unidadesCompativeis);
-
             const selectUnidades = document.getElementById('unidades');
             selectUnidades.innerHTML = '';
             unidadesCompativeis.forEach(function(unidade) {

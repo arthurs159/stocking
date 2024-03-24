@@ -1,5 +1,6 @@
 package br.com.stocking.entities.rawMaterial;
 
+import br.com.stocking.entities.rawMaterial.forms.RawMaterialAddForm;
 import br.com.stocking.entities.rawMaterial.repository.RawMaterialRepository;
 import br.com.stocking.entities.utils.Unit;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class RawMaterialApiController {
         return ResponseEntity.ok(Unit.getCompatibleUnits(unit));
     }
 
-        @GetMapping("/add/rawMaterial/{rawMaterialId}")
+    @GetMapping("/add/rawMaterial/{rawMaterialId}")
     public ResponseEntity<RawMaterialAddForm> loadAddRawMaterial(@PathVariable("rawMaterialId") Long rawMaterialId) {
         RawMaterial rawMaterial = rawMaterialRepository.findById(rawMaterialId).orElseThrow();
         return new ResponseEntity<>(new RawMaterialAddForm(rawMaterial), HttpStatus.OK);

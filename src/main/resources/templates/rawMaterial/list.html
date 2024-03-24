@@ -16,7 +16,6 @@
     <div class="title-container">
         <h2>Materiais</h2>
         <div>
-            <button><a href="/create/rawMaterial">Adicionar Material</a></button>
             <button><a href="/create/rawMaterial">Criar Material</a></button>
         </div>
     </div>
@@ -26,7 +25,8 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Nome</th>
-            <th scope="col">Preço</th>
+            <th scope="col">Preço Unitário</th>
+            <th scope="col">Preço Total</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Data de expiração</th>
             <th scope="col">Adicionar</th>
@@ -38,6 +38,7 @@
             <td th:text="${material.id}"></td>
             <td th:text="${material.name}"></td>
             <td th:text="${material.getUnitPrice()}"></td>
+            <td th:text="${material.getTotalPrice()}"></td>
             <td th:data-material-unit="${material.getUnit()}" th:text="${material.quantity} + ' ' + ${material.getUnit().getDisplayName()}"></td>
             <td th:text="${material.expiredDate}"></td>
             <td><a class="btn btn-primary addRawMaterial" th:data-material-id="${material.id}">Adicionar</a></td>

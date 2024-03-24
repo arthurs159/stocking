@@ -1,6 +1,7 @@
 package br.com.stocking.entities.rawMaterial;
 
 import br.com.stocking.entities.product.Product;
+import br.com.stocking.entities.rawMaterial.forms.RawMaterialForm;
 import br.com.stocking.entities.utils.Unit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

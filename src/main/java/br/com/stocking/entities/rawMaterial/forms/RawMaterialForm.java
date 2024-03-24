@@ -1,5 +1,6 @@
-package br.com.stocking.entities.rawMaterial;
+package br.com.stocking.entities.rawMaterial.forms;
 
+import br.com.stocking.entities.rawMaterial.RawMaterial;
 import br.com.stocking.entities.utils.Unit;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
