@@ -8,7 +8,9 @@ public class RawMaterialAddForm {
     private Long id;
     private Double quantity;
     private Unit unit;
-    private double price;
+    private boolean isNewPrice;
+    private Double unitPrice;
+    private Double totalPrice;
 
     public RawMaterialAddForm() {}
 
@@ -17,10 +19,13 @@ public class RawMaterialAddForm {
         this.quantity = quantity;
     }
 
-    public RawMaterialAddForm(Long id, Double quantity, double price) {
+    public RawMaterialAddForm(Long id, Double quantity, Unit unit, boolean isNewPrice, Double unitPrice, Double totalPrice) {
         this.id = id;
         this.quantity = quantity;
-        this.price = price;
+        this.unit = unit;
+        this.isNewPrice = isNewPrice;
+        this.unitPrice = unitPrice;
+        this.totalPrice = totalPrice;
     }
 
     public RawMaterialAddForm(RawMaterial rawMaterial) {
@@ -31,7 +36,6 @@ public class RawMaterialAddForm {
     public double materialValueQuantity(Unit unitToAdd) {
         return MaterialConverter.materialValueQuantity(this.quantity, this.unit, unitToAdd);
     }
-
 
     public Long getId() {
         return id;
@@ -57,11 +61,27 @@ public class RawMaterialAddForm {
         this.unit = unit;
     }
 
-    public double getPrice() {
-        return price;
+    public boolean isNewPrice() {
+        return isNewPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setNewPrice(boolean newPrice) {
+        isNewPrice = newPrice;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

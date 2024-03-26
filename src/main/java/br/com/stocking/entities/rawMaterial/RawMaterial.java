@@ -67,8 +67,12 @@ public class RawMaterial implements Serializable {
         this.expiredDate = form.getExpiredDate();
     }
 
-    public void addNewMaterialQuantity(double quantity) {
+    public void addNewMaterialQuantity(double quantity, boolean isNewPrice, double unitPrice, double totalPrice) {
         this.quantity += quantity;
+        if(isNewPrice) {
+            this.unitPrice += unitPrice;
+            this.totalPrice += totalPrice;
+        }
     }
 
     public Long getId() {

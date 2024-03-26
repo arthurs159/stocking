@@ -57,12 +57,30 @@
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name">
 
-        <label for="quantidade">Quantidade:</label>
-        <input type="text" id="quantidade" name="quantidade">
+<!--        <label for="quantidade">Quantidade:</label>-->
+        <label for="raw-material_quantity">Quantidade:</label>
+<!--        <input type="text" id="quantidade" name="quantidade">-->
+        <input type="text" id="raw-material_quantity" name="quantidade">
 
         <label for="unidades">Unidade:</label>
         <select id="unidades" name="unidades"></select>
 
+        <div>
+            <label for="showNewPrice"></label>
+            <input type="checkbox" id="showNewPrice"> Adicionar novo preço
+
+            <div id="camposPreco" style="display:none;">
+<!--                <label for="unitPrice">Preço Unitário:</label>-->
+                <label for="raw-material_price">Preço Unitário:</label>
+<!--                <input type="text" id="unitPrice" name="unitPrice">-->
+                <input type="text" id="raw-material_price" name="unitPrice">
+
+<!--                <label for="totalPrice">Preço Total:</label>-->
+                <label for="raw-material_total_price">Preço Total:</label>
+<!--                <input type="text" id="totalPrice" name="totalPrice">-->
+                <input type="text" id="raw-material_total_price" name="totalPrice">
+            </div>
+        </div>
         <button type="submit">Adicionar</button>
     </form>
 </div>
@@ -70,4 +88,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         type="application/javascript"></script>
 <script src="/js/rawMaterial/addMaterial.js"></script>
+<script src="/js/rawMaterial/rawMaterial.js"></script>
 </html>

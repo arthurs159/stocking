@@ -32,7 +32,7 @@ public class RawMaterialApiController {
     @PostMapping("/add/rawMaterial/{rawMaterialId}")
     public ResponseEntity<RawMaterialAddForm> AddRawMaterial(@PathVariable("rawMaterialId") Long rawMaterialId, RawMaterialAddForm form) {
         RawMaterial rawMaterial = rawMaterialRepository.findById(rawMaterialId).orElseThrow();
-        rawMaterial.addNewMaterialQuantity(form.materialValueQuantity(rawMaterial.getUnit()));
+        rawMaterial.addNewMaterialQuantity(form.materialValueQuantity(rawMaterial.getUnit()), form.isNewPrice(), form.getUnitPrice(), form.getTotalPrice());
         rawMaterialRepository.save(rawMaterial);
 
         return new ResponseEntity<>(form, HttpStatus.OK);

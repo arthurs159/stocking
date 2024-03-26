@@ -1,10 +1,14 @@
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("fecharSidebar");
 const addForm = document.getElementById("formularioAdicao");
-const quantityInput = document.getElementById("quantidade");
+const quantityInput = document.getElementById("raw-material_quantity");
 const nameInput = document.getElementById("name");
 const unitInput = document.getElementById("unidades");
 const addRawMaterial = document.querySelectorAll(".addRawMaterial");
+const showNewPrice = document.getElementById("showNewPrice");
+const unitPrice = document.getElementById("raw-material_price");
+const totalPrice = document.getElementById("raw-material_total_price");
+const isNewPrice = document.getElementById("showNewPrice");
 let materialId;
 
 addRawMaterial.forEach(function (button) {
@@ -19,7 +23,7 @@ addRawMaterial.forEach(function (button) {
 
 addForm.addEventListener("submit", function(event) {
     event.preventDefault();
-    adicionarMaterial(materialId, quantityInput.value, unitInput.value);
+    adicionarMaterial(materialId, quantityInput.value, unitInput.value, unitPrice.value, totalPrice.value, isNewPrice);
 });
 
 closeSidebar.addEventListener("click", function() {
@@ -49,12 +53,14 @@ function getCompatibleUnits(compatibleUnit) {
     xhr.send();
 }
 
-function adicionarMaterial(rawMaterialId, quantidade, unit) {
-    var formData = new FormData();
+function adicionarMaterial(rawMaterialId, quantity, unit, unitPrice, totalPrice, isNewPrice) {
+    const formData = new FormData();
     formData.append("id", rawMaterialId);
-    formData.append("quantity", quantidade);
+    formData.append("quantity", quantity);
     formData.append("unit", unit);
-    console.log(formData);
+    formData.append("unitPrice", unitPrice);
+    formData.append("totalPrice", totalPrice);
+    formData.append("newPrice", isNewPrice.checked);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/add/rawMaterial/" + rawMaterialId);
@@ -69,3 +75,8 @@ function adicionarMaterial(rawMaterialId, quantidade, unit) {
 
     xhr.send(formData);
 }
+
+showNewPrice.addEventListener("click", () => {
+    const campos = document.getElementById("camposPreco");
+    campos.style.display = campos.style.display === "block" ? "none" : "block";
+})
