@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static java.time.LocalDate.now;
@@ -67,12 +68,12 @@ public class RawMaterial implements Serializable {
         this.expiredDate = form.getExpiredDate();
     }
 
-    public void addNewMaterialQuantity(double quantity, boolean isNewPrice, double unitPrice, double totalPrice) {
-        this.quantity += quantity;
-        if(isNewPrice) {
-            this.unitPrice += unitPrice;
-            this.totalPrice += totalPrice;
-        }
+    public void addNewMaterialQuantity(double quantity, boolean isNewPrice, Double unitPrice, Double totalPrice) {
+        double totalQuantity = this.quantity + quantity;
+        if (isNewPrice) this.unitPrice = calculateAverageUnitPrice(this.quantity, this.unitPrice, quantity, unitPrice);
+        else this.unitPrice += unitPrice;
+        this.quantity = totalQuantity;
+        this.totalPrice += totalPrice;
     }
 
     public Long getId() {
@@ -109,6 +110,11 @@ public class RawMaterial implements Serializable {
 
     public Double getTotalPrice() {
         return totalPrice;
+    }
+
+    private double calculateAverageUnitPrice(double existingQuantity, double existingUnitPrice, double newQuantity, double newUnitPrice) {
+        double totalQuantity = existingQuantity + newQuantity;
+        return ((existingQuantity * existingUnitPrice) + (newQuantity * newUnitPrice)) / totalQuantity;
     }
 
 }

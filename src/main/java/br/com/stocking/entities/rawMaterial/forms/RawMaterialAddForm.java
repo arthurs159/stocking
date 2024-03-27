@@ -4,6 +4,10 @@ import br.com.stocking.entities.rawMaterial.RawMaterial;
 import br.com.stocking.entities.utils.Unit;
 import br.com.stocking.entities.utils.unitCalc.MaterialConverter;
 
+import java.util.Objects;
+
+import static java.util.Objects.*;
+
 public class RawMaterialAddForm {
     private Long id;
     private Double quantity;
@@ -69,7 +73,12 @@ public class RawMaterialAddForm {
         isNewPrice = newPrice;
     }
 
-    public double getUnitPrice() {
+//    public Double getUnitPrice() {
+//        return unitPrice;
+//    }
+
+    public Double getUnitPrice() {
+        if(isNull(unitPrice)) return 0.0;
         return unitPrice;
     }
 
@@ -77,7 +86,15 @@ public class RawMaterialAddForm {
         this.unitPrice = unitPrice;
     }
 
-    public double getTotalPrice() {
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public double getTotalPrice(double unitPrice, Unit unitToAdd) {
+        if(isNull(totalPrice)) {
+            double quantity = materialValueQuantity(unitToAdd);
+            return quantity * unitPrice;
+        }
         return totalPrice;
     }
 
